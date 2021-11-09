@@ -10,7 +10,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        python-version: ['3.7', '3.8', '3.9']
+        python-version: ['3.9']
 
     steps:
     - uses: actions/checkout@v2
@@ -21,16 +21,14 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --user --upgrade pip
-        pip install --user --upgrade pytest
-        pip install --user flake8 pytest-cov coveralls tox tox-gh-actions
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
         if [ -f requirements_dev.txt ]; then pip install -r requirements_dev.txt; fi
         pip install .
-    - name: Test with tox
-      run: tox
     - name: Test with pytest
       run: pytest --cov=sphericalrht
     - name: Coveralls
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: coveralls --service=github
+    - name: Test with tox
+      run: tox
