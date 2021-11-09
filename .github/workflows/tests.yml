@@ -5,7 +5,7 @@ on:
   - pull_request
 
 jobs:
-  test:
+  build:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -26,6 +26,8 @@ jobs:
         pip install .
     - name: Test with unittest
       run: python -m unittest tests/*py
+    - name: Test with pytest
+      run: pytest --cov=sphericalrht
     - name: Coveralls
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
