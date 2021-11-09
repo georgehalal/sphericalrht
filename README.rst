@@ -1,8 +1,17 @@
-.. image:: https://github.com/georgehalal/sphericalrht/docs/images/sphericalrht_logo.gif?raw=true
+.. 
+   image:: https://github.com/georgehalal/sphericalrht/docs/images/sphericalrht_logo.gif?raw=true
    :align: center
    :width: 450 px
    :alt: sphericalrht Logo
 
+.. raw:: html
+
+   <div align="center">
+   <img src="https://raw.githubusercontent.com/georgehalal/sphericalrht/main/docs/images/sphericalrht_logo.gif" width="450px">
+   </img>
+   <br/>
+   </div>
+   <br/><br/>
 
 .. image:: https://readthedocs.org/projects/sphericalrht/badge/?version=latest
    :target: https://sphericalrht.readthedocs.io/en/latest/?badge=latest
@@ -21,7 +30,6 @@
    :alt: License
 
 
-.. class:: center
 
 ``sphericalrht`` is a fast, efficient implementation of the
 `Rolling Hough Transform <http://seclark.github.io/RHT/>`_
@@ -31,7 +39,9 @@ The documentation can be found at
 and the package is distributed over
 `PyPI <https://pypi.org/project/sphericalrht/>`_.
 
+
 .. contents::
+
 
 ============
 Installation
