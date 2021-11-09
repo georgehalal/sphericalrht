@@ -1,14 +1,12 @@
 # Configuration file for the Sphinx documentation builder.
 
-import sphericalrht
-
 # -- Project information
 
 project = 'Spherical Rolling Hough Transform'
 copyright = '2021, George Halal'
 author = 'George Halal'
 
-version = sphericalrht.__version__
+version = "1.0.1"
 release = version
 
 # -- General configuration
