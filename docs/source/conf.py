@@ -13,8 +13,6 @@
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 import sys, os
 sys.path.append(os.path.abspath("."))
-import sphericalrht
-
 
 # -- Project information -----------------------------------------------------
 
@@ -23,7 +21,7 @@ copyright = '2021, George Halal'
 author = 'George Halal'
 
 # The short X.Y version
-version = sphericalrht.__version__
+version = "1.0.1"_
 # The full version, including alpha/beta/rc tags
 release = version
 
