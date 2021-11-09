@@ -1,8 +1,10 @@
-include src/sphericalrht/kernel_alms/*
 include tests/data/*
 include tests/*.py
 include tests/py.typed
 include README.rst
+include README.md
 include *.txt
 include docs/*
 include .github/workflows/*
+include tox.ini
+include pyproject.toml

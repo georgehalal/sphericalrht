@@ -4,6 +4,9 @@
    <img src="https://raw.githubusercontent.com/georgehalal/sphericalrht/main/docs/images/sphericalrht_logo.gif" width="450px">
    </img>
    <br/>
+   <a href="https://badge.fury.io/py/sphericalrht">
+   <img src="https://badge.fury.io/py/sphericalrht.svg" alt="PyPI version" height="18">
+   </a>
    <a href='https://sphericalrht.readthedocs.io/en/latest/?badge=latest'>
    <img src='https://readthedocs.org/projects/sphericalrht/badge/?version=latest' alt="Documentation status" />
    </a>
@@ -43,7 +46,7 @@ Run the following in a terminal to install:
 
 .. code-block:: bash
 
-   $ pip install sphericalrht
+    $ pip install sphericalrht
 
 If installing on a computing cluster, you may want to run the following
 instead:
@@ -66,31 +69,31 @@ example of how to run the algorithm and read in the results:
 
 .. code-block:: python
 
-   from sphericalrht import CubeAndStokes
-   
-   cube_and_stokes = CubeAndStokes(
-       in_map="/path/to/input_map.fits",       # Input .fits map
-       nside=1024,                             # NSIDE of output maps
-       out_dir="/path/to/output_directory",    # Directory to save results in
-       wlen=75,                                # window diameter [arcmins]
-       fwhm=30,                                # high-pass filter scale [arcmins]
-       thresh=0.7,                             # threshold fraction (0-1)
-       norients=100)                           # number of orientation angles
-   
-   cube_and_stokes.build_and_save()
-   
-   
-   # Load the output maps
-   import healpy as hp
-   
-   I, Q, U = hp.read_map("/path/to/output_maps.fits", field=(0,1,2))
-   
-   
-   # Optionally, load the output of all orientation angles for each pixel
-   import h5py
-   
-   with h5py.File("/path/to/output_cube.h5") as cube_file:
-       spherical_rht_out = cube_file["spherical_rht_cube"][:, PIXEL_INDEX]
+    from sphericalrht import CubeAndStokes
+    
+    cube_and_stokes = CubeAndStokes(
+        in_map="/path/to/input_map.fits",       # Input .fits map
+        nside=1024,                             # NSIDE of output maps
+        out_dir="/path/to/output_directory",    # Directory to save results in
+        wlen=75,                                # window diameter [arcmins]
+        fwhm=30,                                # high-pass filter scale [arcmins]
+        thresh=0.7,                             # threshold fraction (0-1)
+        norients=100)                           # number of orientation angles
+    
+    cube_and_stokes.build_and_save()
+    
+    
+    # Load the output maps
+    import healpy as hp
+    
+    I, Q, U = hp.read_map("/path/to/output_maps.fits", field=(0,1,2))
+    
+    
+    # Optionally, load the output of all orientation angles for each pixel
+    import h5py
+    
+    with h5py.File("/path/to/output_cube.h5") as cube_file:
+        spherical_rht_out = cube_file["spherical_rht_cube"][:, PIXEL_INDEX]
 
 
 ========================
