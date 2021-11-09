@@ -1,0 +1,60 @@
+2021-11-08 21:14:57,957:INFO: * Output directory: /home/users/georgech/sphericalrht/tests/data
+2021-11-08 21:14:57,958:INFO: * Input map alms exist.
+2021-11-08 21:14:57,972:INFO: NSIDE = 2
+2021-11-08 21:14:57,973:INFO: ORDERING = RING in fits file
+2021-11-08 21:14:57,973:INFO: INDXSCHM = IMPLICIT
+2021-11-08 21:14:57,976:INFO: * Kernel alms exist.
+2021-11-08 21:14:57,996:INFO: * Interpolator configured.
+2021-11-08 21:14:58,005:INFO: * Using 0.10031104GB of memory to make spherical RHT cube.
+2021-11-08 21:14:58,008:WARNING: setting the output map dtype to [dtype('>f8'), dtype('float64'), dtype('float64')]
+2021-11-08 21:14:58,029:INFO: * Total run time = 0.0011813084284464518 mins.
+2021-11-08 21:14:58,030:INFO: * Output directory: /home/users/georgech/sphericalrht/tests/data
+2021-11-08 21:14:58,927:INFO: Sigma is 746.965377 arcmin (0.217283 rad) 
+2021-11-08 21:14:58,927:INFO: -> fwhm is 1758.969043 arcmin
+2021-11-08 21:14:58,928:INFO: * Output directory: /home/users/georgech/sphericalrht/tests/data
+2021-11-08 21:14:58,929:INFO: * Output directory: /home/users/georgech/sphericalrht/tests/data
+2021-11-08 21:14:58,929:INFO: * Output directory: /home/users/georgech/sphericalrht/tests/data
+2021-11-08 21:14:58,940:INFO: NSIDE = 2
+2021-11-08 21:14:58,940:INFO: ORDERING = RING in fits file
+2021-11-08 21:14:58,940:INFO: INDXSCHM = IMPLICIT
+2021-11-08 21:14:58,947:INFO: * Output directory: /home/users/georgech/sphericalrht/tests/data
+2021-11-08 21:14:58,982:INFO: * Using 0.101105664GB of memory to make spherical RHT cube.
+2021-11-08 21:14:58,986:WARNING: setting the output map dtype to [dtype('float64'), dtype('float64'), dtype('float64')]
+2021-11-08 21:14:59,012:INFO: * Output directory: /home/users/georgech/sphericalrht/tests/data
+2021-11-08 21:14:59,748:INFO: Sigma is 12.739827 arcmin (0.003706 rad) 
+2021-11-08 21:14:59,748:INFO: -> fwhm is 30.000000 arcmin
+2021-11-08 21:14:59,749:INFO: Sigma is 0.000000 arcmin (0.000000 rad) 
+2021-11-08 21:14:59,749:INFO: -> fwhm is 0.000000 arcmin
+2021-11-08 21:14:59,851:INFO: 1.0.5
+2021-11-08 21:14:59,851:INFO: George Halal
+2021-11-08 21:14:59,851:INFO: halalgeorge@gmail.com
+2021-11-08 21:39:05,376:INFO: * Output directory: /home/users/georgech/sphericalrht/tests/data
+2021-11-08 21:39:05,377:INFO: * Input map alms exist.
+2021-11-08 21:39:05,394:INFO: NSIDE = 2
+2021-11-08 21:39:05,395:INFO: ORDERING = RING in fits file
+2021-11-08 21:39:05,395:INFO: INDXSCHM = IMPLICIT
+2021-11-08 21:39:05,400:INFO: * Kernel alms exist.
+2021-11-08 21:39:05,429:INFO: * Interpolator configured.
+2021-11-08 21:39:05,440:INFO: * Using 0.097427456GB of memory to make spherical RHT cube.
+2021-11-08 21:39:05,443:WARNING: setting the output map dtype to [dtype('>f8'), dtype('float64'), dtype('float64')]
+2021-11-08 21:39:05,467:INFO: * Total run time = 0.001495842138926188 mins.
+2021-11-08 21:39:05,468:INFO: * Output directory: /home/users/georgech/sphericalrht/tests/data
+2021-11-08 21:39:06,238:INFO: Sigma is 746.965377 arcmin (0.217283 rad) 
+2021-11-08 21:39:06,238:INFO: -> fwhm is 1758.969043 arcmin
+2021-11-08 21:39:06,239:INFO: * Output directory: /home/users/georgech/sphericalrht/tests/data
+2021-11-08 21:39:06,239:INFO: * Output directory: /home/users/georgech/sphericalrht/tests/data
+2021-11-08 21:39:06,239:INFO: * Output directory: /home/users/georgech/sphericalrht/tests/data
+2021-11-08 21:39:06,247:INFO: NSIDE = 2
+2021-11-08 21:39:06,247:INFO: ORDERING = RING in fits file
+2021-11-08 21:39:06,248:INFO: INDXSCHM = IMPLICIT
+2021-11-08 21:39:06,250:INFO: * Output directory: /home/users/georgech/sphericalrht/tests/data
+2021-11-08 21:39:06,281:INFO: * Using 0.098213888GB of memory to make spherical RHT cube.
+2021-11-08 21:39:06,284:WARNING: setting the output map dtype to [dtype('float64'), dtype('float64'), dtype('float64')]
+2021-11-08 21:39:06,306:INFO: * Output directory: /home/users/georgech/sphericalrht/tests/data
+2021-11-08 21:39:06,838:INFO: Sigma is 12.739827 arcmin (0.003706 rad) 
+2021-11-08 21:39:06,838:INFO: -> fwhm is 30.000000 arcmin
+2021-11-08 21:39:06,838:INFO: Sigma is 0.000000 arcmin (0.000000 rad) 
+2021-11-08 21:39:06,839:INFO: -> fwhm is 0.000000 arcmin
+2021-11-08 21:39:06,917:INFO: 1.0.5
+2021-11-08 21:39:06,917:INFO: George Halal
+2021-11-08 21:39:06,917:INFO: halalgeorge@gmail.com
