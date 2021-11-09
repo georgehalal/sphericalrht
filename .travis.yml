@@ -1,0 +1,25 @@
+language: python
+
+python:
+    - '3.9'
+
+services:
+  - xvfb
+
+before_install:
+  - pip install -r requirements.txt
+  - pip install -r requirements_dev.txt
+
+install:
+  - pip install .
+
+before_script:
+  - "export DISPLAY=:99.0"
+  - sleep 3
+
+script:
+  - cd tests
+  - coverage run --source sphericalrht -m unittest -v test_*.py
+
+after_success:
+  - coveralls
