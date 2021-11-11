@@ -68,6 +68,8 @@ class TestCubeAndStokes(unittest.TestCase):
 
         self.assertEqual(out_map.shape[0], 12 * 4**2)
 
+        # Test same NSIDE
+
     def test_make_ker(self):
         """Test of the CubeAndStokes.make_ker method."""
         c_a_s = CubeAndStokes(TEST_MAP_PATH, NSIDE, OUT_DIR)
@@ -134,7 +136,21 @@ class TestCubeAndStokes(unittest.TestCase):
         c_a_s.build_and_save()
 
         cube_name = os.path.join(OUT_DIR, c_a_s.out_name + ".h5")
-        map_name = os.path.join(OUT_DIR, "IQU_" + c_a_s.out_name + ".fits")
+        map_name = os.path.join(
+            OUT_DIR, "IQU_" + c_a_s.out_name + ".fits")
+        self.assertTrue(os.path.exists(cube_name))
+        self.assertTrue(os.path.exists(map_name))
+
+        if os.path.exists(OUT_DIR):
+            os.remove(OUT_DIR)
+        kernel_alms_dir = os.path.join(
+            os.path.expanduser("~"), ".cache/sphericalrht/kernel_alms")
+        if os.path.exists(kernel_alms_dir):
+            os.remove(kernel_alms_dir)
+        c_a_s = CubeAndStokes((np.one((NPIX)), c_a_s.name), float(NSIDE),
+                              OUT_DIR, norients=float(NORIENTS), wlen=75.)
+        c_a_s.build_and_save()
+
         self.assertTrue(os.path.exists(cube_name))
         self.assertTrue(os.path.exists(map_name))
 

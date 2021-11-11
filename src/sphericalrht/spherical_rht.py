@@ -17,13 +17,13 @@ Classes:
 Author: George Halal
 Email: halalgeorge@gmail.com
 Date: 11/07/2021
-Version: 1.0.4
+Version: 1.1.0
 """
 
 
 __author__ = "George Halal"
 __email__ = "halalgeorge@gmail.com"
-__version__ = "1.0.4"
+__version__ = "1.1.0"
 __all__ = ["StokesQU", "CubeAndStokes"]
 
 
@@ -31,6 +31,8 @@ import os
 import time
 from collections import deque
 import logging
+from typing import Union
+from dataclasses import dataclass
 
 import psutil
 import healpy as hp
@@ -41,6 +43,7 @@ import h5py
 from .utils import set_logger
 
 
+@dataclass(order=True)
 class StokesQU:
     """Handle Stokes Q and U linear polarization maps.
 
@@ -106,6 +109,7 @@ class StokesQU:
         return None
 
 
+@dataclass
 class CubeAndStokes:
     """The main class of the sphericalrht algorithm.
 
@@ -123,59 +127,106 @@ class CubeAndStokes:
             and saving the resulting cube and maps.
     """
 
-    def __init__(self, in_map: str, nside: int, out_dir=None, wlen: int = 75,
-                 fwhm: float = 30., thresh: float = 0.7,
-                 norients: int = 100) -> None:
+    def __init__(self, in_map: Union[str, tuple[np.ndarray, str]], nside: int,
+                 out_dir: str, wlen: int = 75, fwhm: float = 30.,
+                 thresh: float = 0.7, norients: int = 100,
+                 overwrite: bool = False) -> None:
         """Define necessary variables based on the input arguments and
         make necessary directories.
 
         Args:
-            in_map (str): path to input intensity map
-            nside (int): output NSIDE for intensity and Stokes Q/U maps
+            in_map (str or tuple(np.ndarray((Npix,)), str)): either
+                path to input intensity map or a tuple of the input
+                intensity map as an array along with its name as a str,
+                which is used for saving log file, alms, spherical RHT
+                cube, and Stokes Q/U maps. The rest of the input options
+                will be appended to this name when saving.
+            nside (int): output NSIDE for intensity and Stokes Q/U maps.
             out_dir (str): directory to save log file, alms,
-                spherical RHT cube, and Stokes Q/U maps
+                spherical RHT cube, and Stokes Q/U maps.
             wlen (int): convolution kernel window diameter [arcmins]
-            fwhm (int or float): high-pass filter scale [arcmins]
+                (the scale at which to measure the orientation).
+            fwhm (float): scale [arcmins] for the unsharp mask applied
+                to pick out filamentary structure.
             thresh (float): threshold fraction of the window diameter
-                between 0-1
-            norients (int): Number of orientations to consider
+                between 0-1 applied to the result of the convolution.
+                Higher thresholds focus on the main orientations only,
+                while lower thresholds take more orientations into
+                account, weighted by their intensity.
+            norients (int): angular resolution given by the number of
+                orientations to consider.
+            overwrite (bool): whether to overwrite outputs of same name
+                if they already exist
         """
-        assert os.path.exists(in_map), ("Input map does not exist. "
-                                        "Check path and try again.")
-        assert type(nside) is int, "NSIDE must be of type int"
-        assert type(wlen) is int, "Window diameter must be of type int"
-        assert wlen > 0, "Window diameter must be positive"
-        assert fwhm > 0, "FWHM must be positive"
-        assert thresh > 0 and thresh < 1, "Threshold must be between 0-1"
-        assert norients > 0, "Number of orientations must be positive"
+        assert type(in_map) is str or (
+            type(in_map) is tuple and type(in_map[0]) is np.ndarray
+            and type(in_map[1]) is str), ("Input map must be a path or a"
+                                          " tuple(np.ndarray, name)")
+        if type(in_map) is str:
+            assert os.path.exists(in_map), (
+                "Input map does not exist. Check path and try again.")
+            self.in_map = in_map
+            self.name = in_map.split("/")[-1].split(".fits")[0]
+        else:
+            self.in_map = in_map[0]
+            self.name = in_map[1]
+            assert np.sqrt(self.in_map.shape[0]/12) % 1 == 0, (
+               "Input map has the wrong shape or number of pixels.")
 
-        self.name = in_map.split("/")[-1].split(".fits")[0]
-        self.out_name = (f"{self.name}_nside{nside}_wlen{wlen}_fwhm{fwhm}"
-                         f"_thresh{thresh}_norients{norients}")
+        if type(nside) is float:
+            assert nside % 1 == 0, "NSIDE must be an integer"
+            nside = int(nside)
+        else:
+            assert type(nside) is int, "NSIDE must be an integer"
+        self.nside = nside
 
-        if out_dir is None:
-            out_dir = os.path.join(
-                os.path.dirname(os.path.abspath(in_map)), "spherical_rht_out")
-
+        assert type(out_dir) is str, "Output directory must be a str"
         if not os.path.exists(out_dir):
             os.makedirs(out_dir)
+        self.out_dir = out_dir
+
+        if type(wlen) is float:
+            assert wlen % 1 == 0, "Window diameter must be an integer"
+            wlen = int(wlen)
+        else:
+            assert type(wlen) is int, "Window diameter must be an integer"
+        assert wlen > 0, "Window diameter must be positive"
+        self.wlen = wlen
+
+        assert type(fwhm) is float or type(fwhm) is int, "FWHM type is invalid"
+        assert fwhm > 0, "FWHM must be positive"
+        self.fwhm = fwhm
+        if fwhm % 1 == 0:
+            self.fwhm = int(fwhm)
+
+        assert type(thresh) is float or type(thresh) is int, (
+            "Threshold type is invalid")
+        assert thresh >= 0 and thresh < 1, "Threshold must be between 0-1"
+        self.thresh = thresh
+
+        if type(norients) is float:
+            assert norients % 1 == 0, (
+                "Number of orientations must be an integer")
+            norients = int(norients)
+        else:
+            assert type(norients) is int, (
+                "Number of orientations must be an integer")
+        assert norients > 0, "Number of orientations must be positive"
+        self.norients = norients
+
+        self.overwrite = overwrite
+
+        self.out_name = (f"{self.name}_nside{nside}_wlen{wlen}_fwhm{fwhm}"
+                         f"_thresh{thresh}_norients{norients}")
 
         set_logger(os.path.join(out_dir, self.out_name + ".log"))
         logging.info(f"* Output directory: {out_dir}")
 
         self.kernel_alms_dir = os.path.join(
             os.path.expanduser("~"), ".cache/sphericalrht/kernel_alms")
-
         if not os.path.exists(self.kernel_alms_dir):
             os.makedirs(self.kernel_alms_dir)
 
-        self.in_map = in_map
-        self.nside = nside
-        self.out_dir = out_dir
-        self.wlen = wlen
-        self.fwhm = fwhm
-        self.thresh = thresh
-        self.norients = norients
         self.ker_nside = min(self.nside * 4, 4096)
         self.lmax = min(int(2.5*self.ker_nside - 1), int(1.25*4096 - 1))
         self.mmax = min(50, self.lmax)
@@ -198,7 +249,8 @@ class CubeAndStokes:
 
         return (subtracted_map > 0.).astype(int)
 
-    def prep_intensity(self, return_alm: bool = False) -> np.ndarray:
+    def prep_intensity(self, return_alm: bool = False) -> Union[
+            np.ndarray, tuple[np.ndarray, np.ndarray]]:
         """Process the intensity map for saving with the Stokes Q/U
         maps and optionally calculate alms for the convolution.
 
@@ -211,7 +263,11 @@ class CubeAndStokes:
             (optional) umask_intensity_alm (np.ndarray((1, Nalms))):
                 processed alms used for convolution
         """
-        intensity = hp.read_map(self.in_map, field=(0))
+        if type(self.in_map) is str:
+            intensity = hp.read_map(self.in_map, field=(0))
+        else:
+            intensity = self.in_map
+
         intensity_nside = hp.get_nside(intensity)
 
         if self.nside == intensity_nside:
@@ -380,6 +436,15 @@ class CubeAndStokes:
         """Run the algorithm and save the resulting orientation cube and
         Stokes maps.
         """
+        out_maps_name = os.path.join(
+            self.out_dir, "IQU_" + self.out_name + ".fits")
+        out_cube_name = os.path.join(self.out_dir, self.out_name + ".h5")
+        if not self.overwrite and (os.path.exists(out_maps_name)
+                                   and os.path.exists(out_cube_name)):
+            logging.info("* Outputs already exist. "
+                         "Change overwrite to True to overwrite them.")
+            return None
+
         start_time = time.time()
 
         intensity_alm_file = os.path.join(
@@ -422,6 +487,7 @@ class CubeAndStokes:
         split_factor = np.ceil(self.nside**2/512**2 * self.norients/300)
         self.save_cube_and_stokes(split_factor, intensity, interpolator)
 
+        logging.info("* Saved cube and maps in output directory.")
         logging.info(
             f"* Total run time = {(time.time()-start_time) / 60.} mins.")
 

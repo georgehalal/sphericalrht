@@ -15,7 +15,7 @@ import logging
 
 __author__ = "George Halal"
 __email__ = "halalgeorge@gmail.com"
-__version__ = "1.0.4"
+__version__ = "1.1.0"
 __all__ = ["set_logger"]
 
 
