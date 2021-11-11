@@ -11,6 +11,7 @@ Date: 11/07/2021
 
 
 import os
+import shutil
 
 import ducc0
 import numpy as np
@@ -142,11 +143,11 @@ class TestCubeAndStokes(unittest.TestCase):
         self.assertTrue(os.path.exists(map_name))
 
         if os.path.exists(OUT_DIR):
-            os.remove(OUT_DIR)
+            shutil.rmtree(OUT_DIR)
         kernel_alms_dir = os.path.join(
             os.path.expanduser("~"), ".cache/sphericalrht/kernel_alms")
         if os.path.exists(kernel_alms_dir):
-            os.remove(kernel_alms_dir)
+            shutil.rmtree(kernel_alms_dir)
         c_a_s = CubeAndStokes((np.one((NPIX)), c_a_s.name), float(NSIDE),
                               OUT_DIR, norients=float(NORIENTS), wlen=75.)
         c_a_s.build_and_save()
