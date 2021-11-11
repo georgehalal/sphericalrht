@@ -6,7 +6,7 @@ set_logger: Log output in the terminal to a file.
 
 Author: George Halal
 Email: halalgeorge@gmail.com
-Date: 11/07/2021
+Date: 11/11/2021
 """
 
 
@@ -28,12 +28,11 @@ def set_logger(log_path: str) -> None:
     logger = logging.getLogger()
     logger.setLevel(logging.INFO)
 
-    if not logger.handlers:
-        file_handler = logging.FileHandler(log_path)
-        file_handler.setFormatter(
-            logging.Formatter("%(asctime)s:%(levelname)s: %(message)s"))
-        logger.addHandler(file_handler)
+    file_handler = logging.FileHandler(log_path)
+    file_handler.setFormatter(
+        logging.Formatter("%(asctime)s:%(levelname)s: %(message)s"))
+    logger.addHandler(file_handler)
 
-        stream_handler = logging.StreamHandler()
-        stream_handler.setFormatter(logging.Formatter("%(message)s"))
-        logger.addHandler(stream_handler)
+    stream_handler = logging.StreamHandler()
+    stream_handler.setFormatter(logging.Formatter("%(message)s"))
+    logger.addHandler(stream_handler)

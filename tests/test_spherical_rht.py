@@ -25,7 +25,7 @@ NSIDE = 2
 NPIX = 12 * NSIDE**2
 NORIENTS = 6
 TEST_MAP_PATH = os.path.abspath("tests/data/test_map.fits")
-OUT_DIR = os.path.abspath("tests/data")
+OUT_DIR = os.path.abspath("tests/data/out")
 
 
 class TestStokesQU(unittest.TestCase):

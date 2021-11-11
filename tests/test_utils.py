@@ -4,7 +4,7 @@ This script contains tests of the functions in sphericalrht.utils.
 
 Author: George Halal
 Email: halalgeorge@gmail.com
-Date: 11/07/2021
+Date: 11/11/2021
 """
 
 
@@ -16,7 +16,7 @@ import logging
 import sphericalrht as sr
 
 
-TEST_LOG_FILE = os.path.abspath("tests/data/test.log")
+TEST_LOG_FILE = os.path.abspath("tests/data/out/test.log")
 
 
 class TestSetLogger(unittest.TestCase):
