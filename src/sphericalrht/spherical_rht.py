@@ -31,7 +31,7 @@ import os
 import time
 from collections import deque
 import logging
-from typing import Union
+from typing import Union, Tuple
 from dataclasses import dataclass
 
 import psutil
@@ -127,7 +127,7 @@ class CubeAndStokes:
             and saving the resulting cube and maps.
     """
 
-    def __init__(self, in_map: Union[str, tuple[np.ndarray, str]], nside: int,
+    def __init__(self, in_map: Union[str, Tuple[np.ndarray, str]], nside: int,
                  out_dir: str, wlen: int = 75, fwhm: float = 30.,
                  thresh: float = 0.7, norients: int = 100,
                  overwrite: bool = False) -> None:
@@ -250,7 +250,7 @@ class CubeAndStokes:
         return (subtracted_map > 0.).astype(int)
 
     def prep_intensity(self, return_alm: bool = False) -> Union[
-            np.ndarray, tuple[np.ndarray, np.ndarray]]:
+            np.ndarray, Tuple[np.ndarray, np.ndarray]]:
         """Process the intensity map for saving with the Stokes Q/U
         maps and optionally calculate alms for the convolution.
 
