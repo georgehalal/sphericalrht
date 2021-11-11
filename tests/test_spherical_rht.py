@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 """
-Quantitative tests of the classes in the sphericalrht package.
+Quantitative tests of the classes and functions in the sphericalrht
+package.
 
 Qualitative tests have been performed separately on toy models.
 
 Author: George Halal
 Email: halalgeorge@gmail.com
-Date: 11/07/2021
+Date: 11/11/2021
 """
 
 
@@ -148,7 +149,7 @@ class TestCubeAndStokes(unittest.TestCase):
             os.path.expanduser("~"), ".cache/sphericalrht/kernel_alms")
         if os.path.exists(kernel_alms_dir):
             shutil.rmtree(kernel_alms_dir)
-        c_a_s = CubeAndStokes((np.one((NPIX)), c_a_s.name), float(NSIDE),
+        c_a_s = CubeAndStokes((np.ones((NPIX)), c_a_s.name), float(NSIDE),
                               OUT_DIR, norients=float(NORIENTS), wlen=75.)
         c_a_s.build_and_save()
 
