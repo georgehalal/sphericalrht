@@ -156,7 +156,7 @@ class CubeAndStokes:
             norients (int): angular resolution given by the number of
                 orientations to consider.
             overwrite (bool): whether to overwrite outputs of same name
-                if they already exist
+                if they already exist.
         """
         assert type(in_map) is str or (
             type(in_map) is tuple and type(in_map[0]) is np.ndarray
