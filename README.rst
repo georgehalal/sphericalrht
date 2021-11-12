@@ -14,7 +14,7 @@
    <img src="https://github.com/georgehalal/sphericalrht/actions/workflows/tests.yml/badge.svg" alt="Test status"/>
    </a>
    <a href='https://coveralls.io/github/georgehalal/sphericalrht'>
-   <img src='https://coveralls.io/repos/github/georgehalal/sphericalrht/badge.svg' alt='Coverage Status' />
+   <img src='https://coveralls.io/repos/github/georgehalal/sphericalrht/badge.svg' alt='Coverage Status'/>
    </a>
    <a href="https://github.com/georgehalal/sphericalrht/LICENSE">
    <img src="https://img.shields.io/badge/License-MIT-blue.svg?style=flat" alt="License"/>
