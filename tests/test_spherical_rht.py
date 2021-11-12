@@ -67,10 +67,11 @@ class TestCubeAndStokes(unittest.TestCase):
         """Test of the CubeAndStokes.prep_intensity method."""
         c_a_s = CubeAndStokes(TEST_MAP_PATH, 4, OUT_DIR)
         out_map = c_a_s.prep_intensity()
-
         self.assertEqual(out_map.shape[0], 12 * 4**2)
 
-        # Test same NSIDE
+        c_a_s = CubeAndStokes(TEST_MAP_PATH, 1024, OUT_DIR)
+        out_map = c_a_s.prep_intensity()
+        self.assertEqual(out_map.shape[0], 12 * 1024**2)
 
     def test_make_ker(self):
         """Test of the CubeAndStokes.make_ker method."""

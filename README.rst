@@ -63,38 +63,38 @@ Note that the ``sphericalrht`` package requires at least Python 3.7.
 ================
 Input Parameters
 ================
-``in_map`` (str or tuple(np.ndarray((Npix,)), str))
+``in_map``: Union[str, Tuple[np.ndarray, str]]
    either path to input intensity map or a tuple of the input
    intensity map as an array along with its name as a str,
    which is used for saving log file, alms, spherical RHT
    cube, and Stokes Q/U maps. The rest of the input options
    will be appended to this name when saving.
 
-``nside`` (int)
+``nside``: int
   output NSIDE for intensity and Stokes Q/U maps.
 
-``out_dir`` (str)
+``out_dir``: str
   directory to save log file, alms, spherical RHT cube, and Stokes Q/U
   maps.
 
-``wlen`` (int)
+``wlen``: int
   convolution kernel window diameter [arcmins] (the scale at which to
   measure the orientation).
 
-``fwhm`` (float)
+``fwhm``: float
   scale [arcmins] for the unsharp mask applied to pick out filamentary
   structure.
 
-``thresh`` (float)
+``thresh``: float
   threshold fraction of the window diameter between 0-1 applied to the
   result of the convolution. Higher thresholds focus on the main
   orientations only, while lower thresholds take more orientations into
   account, weighted by their intensity.
 
-``norients`` (int)
+``norients``: int
   angular resolution given by the number of orientations to consider.
 
-``overwrite`` (bool)
+``overwrite``: bool
   whether to overwrite outputs of same name if they already exist.
 
 
@@ -106,8 +106,8 @@ The code runs in parallel on as many CPUs as available, so feel free to
 request many CPUs when submitting a job. The only input parameters that
 affect the runtime and memory are ``nside`` and ``norients``.
 
-Example 1:
-----------
+Example 1
+---------
 Here's one way to run the algorithm with all the input parameters:
 
 .. code-block:: python
@@ -127,13 +127,13 @@ Here's one way to run the algorithm with all the input parameters:
     cube_and_stokes.build_and_save()
 
 
-Example 2:
-----------
+Example 2
+---------
 If your input map is an array instead of a .fits file, you can enter a
 tuple with the array in the first entry and the name as the second entry
 as shown in this example that uses only the required input parameters:
 
- .. code-block:: python
+.. code-block:: python
 
     import h5py
     
@@ -150,8 +150,8 @@ as shown in this example that uses only the required input parameters:
     cube_and_stokes.build_and_save()
 
 
-Reading the results:
---------------------
+Reading the results
+-------------------
 .. code-block:: python
 
     # Load the output maps
