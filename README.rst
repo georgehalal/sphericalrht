@@ -5,7 +5,7 @@
    </img>
    <br/>
    <a href="https://badge.fury.io/py/sphericalrht">
-   <img src="https://badge.fury.io/py/sphericalrht.svg" alt="PyPI version" height="18">
+   <img src="https://badge.fury.io/py/sphericalrht.svg?branch=main&kill_cache=1" alt="PyPI version" height="18">
    </a>
    <a href='https://sphericalrht.readthedocs.io/en/latest/?badge=latest'>
    <img src='https://readthedocs.org/projects/sphericalrht/badge/?version=latest' alt="Documentation status" />
@@ -14,7 +14,7 @@
    <img src="https://github.com/georgehalal/sphericalrht/actions/workflows/tests.yml/badge.svg" alt="Test status"/>
    </a>
    <a href="https://coveralls.io/github/georgehalal/sphericalrht">
-   <img src="https://coveralls.io/repos/github/georgehalal/sphericalrht/badge.svg" alt="Coverage Status"/>
+   <img src="https://coveralls.io/repos/github/georgehalal/sphericalrht/badge.svg?branch=main&kill_cache=1" alt="Coverage status"/>
    </a>
    <a href="https://github.com/georgehalal/sphericalrht/LICENSE">
    <img src="https://img.shields.io/badge/License-MIT-blue.svg?style=flat" alt="License"/>
