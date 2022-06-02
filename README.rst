@@ -30,6 +30,7 @@
    that runs directly on the sphere, using spherical harmonic convolutions.
    The documentation can be found at <a href="https://sphericalrht.readthedocs.io/en/latest/">readthedocs</a>
    and the package is distributed over <a href="https://pypi.org/project/sphericalrht/">PyPI</a>.
+   Development of the Spherical RHT was supported in part by the National Science Foundation.
    </div>
    <br/>
 
