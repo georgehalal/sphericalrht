@@ -17,7 +17,7 @@ Classes:
 Author: George Halal
 Email: halalgeorge@gmail.com
 Date: 07/06/2022
-Version: 1.2.1
+Version: 1.2.2
 """
 
 
