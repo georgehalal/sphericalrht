@@ -25,6 +25,7 @@ NSIDE = 2
 NPIX = 12 * NSIDE**2
 NORIENTS = 6
 TEST_MAP_PATH = os.path.abspath("tests/data/test_map.fits")
+TEST_MAP2_PATH = os.path.abspath("tests/data/test_map2.fits")
 OUT_DIR = os.path.abspath("tests/data/out")
 
 
@@ -32,7 +33,8 @@ class TestStokesQU(unittest.TestCase):
     """Test of the StokesQU class."""
 
     def test_update(self):
-        """Test of the StokesQU.update method."""
+        """Test of the StokesQU.update method.
+        """
         stokes = StokesQU(NPIX)
         cube = np.ones((NORIENTS, NPIX))
         angs = np.zeros((NORIENTS))
@@ -42,7 +44,8 @@ class TestStokesQU(unittest.TestCase):
         self.assertEqual(np.sum(stokes.stokes_u, dtype=int), 0)
 
     def test_normalize_and_weight(self):
-        """Test of the StokesQU.normalize_and_weight method."""
+        """Test of the StokesQU.normalize_and_weight method.
+        """
         stokes = StokesQU(NPIX)
         norm = np.ones((NPIX))
         intensity = np.random.randn(NPIX)
@@ -53,18 +56,22 @@ class TestStokesQU(unittest.TestCase):
 
 
 class TestCubeAndStokes(unittest.TestCase):
-    """Test of the CubeAndStokes class."""
+    """Test of the CubeAndStokes class.
+    """
 
     def test_unsharp_mask(self):
-        """Test of the CubeAndStokes.unsharp_mask method."""
-        c_a_s = CubeAndStokes(TEST_MAP_PATH, NSIDE, OUT_DIR)
+        """Test of the CubeAndStokes.unsharp_mask method.
+        """
+        c_a_s = CubeAndStokes(
+            TEST_MAP_PATH, NSIDE, OUT_DIR, weighting=TEST_MAP2_PATH)
         test_map = np.ones((NPIX))
         umask_map = c_a_s.unsharp_mask(test_map)
 
         self.assertEqual(np.sum(umask_map), NPIX/2)
 
     def test_prep_intensity(self):
-        """Test of the CubeAndStokes.prep_intensity method."""
+        """Test of the CubeAndStokes.prep_intensity method.
+        """
         c_a_s = CubeAndStokes(TEST_MAP_PATH, 4, OUT_DIR)
         out_map = c_a_s.prep_intensity()
         self.assertEqual(out_map.shape[0], 12 * 4**2)
@@ -74,7 +81,8 @@ class TestCubeAndStokes(unittest.TestCase):
         self.assertEqual(out_map.shape[0], 12 * 1024**2)
 
     def test_make_ker(self):
-        """Test of the CubeAndStokes.make_ker method."""
+        """Test of the CubeAndStokes.make_ker method.
+        """
         c_a_s = CubeAndStokes(TEST_MAP_PATH, NSIDE, OUT_DIR)
         ker = c_a_s.make_ker()
 
@@ -82,7 +90,8 @@ class TestCubeAndStokes(unittest.TestCase):
             self.assertEqual(ker.count(i), 1)
 
     def test_get_ker_alm(self):
-        """Test of the CubeAndStokes.get_ker_alm method."""
+        """Test of the CubeAndStokes.get_ker_alm method.
+        """
         c_a_s = CubeAndStokes(TEST_MAP_PATH, NSIDE, OUT_DIR)
         alms = c_a_s.get_ker_alm()
         mmax = min(c_a_s.mmax, c_a_s.lmax)
@@ -93,7 +102,8 @@ class TestCubeAndStokes(unittest.TestCase):
         self.assertEqual(alms[0, 0], 1 / 2. / np.sqrt(np.pi))
 
     def test_get_ptg(self):
-        """Test of the CubeAndStokes.get_ptg method."""
+        """Test of the CubeAndStokes.get_ptg method.
+        """
         c_a_s = CubeAndStokes(TEST_MAP_PATH, NSIDE, OUT_DIR)
         orients = np.zeros((NORIENTS))
         ptg = c_a_s.get_ptg(NPIX, orients)
@@ -101,8 +111,11 @@ class TestCubeAndStokes(unittest.TestCase):
         self.assertEqual(ptg[0, 2], 0)
 
     def test_save_cube_and_stokes(self):
-        """Test of the CubeAndStokes.save_cube_and_stokes method."""
-        c_a_s = CubeAndStokes(TEST_MAP_PATH, NSIDE, OUT_DIR, norients=NORIENTS)
+        """Test of the CubeAndStokes.save_cube_and_stokes method.
+        """
+        c_a_s = CubeAndStokes(
+            TEST_MAP_PATH, NSIDE, OUT_DIR, norients=NORIENTS,
+            weighting=TEST_MAP_PATH)
         lmax = c_a_s.lmax
         mmax = min(c_a_s.mmax, lmax)
 
@@ -126,7 +139,7 @@ class TestCubeAndStokes(unittest.TestCase):
                                                         ofactor=1.5,
                                                         nthreads=0)
         intensity = np.ones((NPIX))
-        c_a_s.save_cube_and_stokes(1, intensity, interpolator)
+        c_a_s.save_cube_and_stokes(intensity, interpolator)
 
         cube_name = os.path.join(OUT_DIR, c_a_s.out_name + ".h5")
         map_name = os.path.join(OUT_DIR, "IQU_" + c_a_s.out_name + ".fits")
@@ -134,8 +147,10 @@ class TestCubeAndStokes(unittest.TestCase):
         self.assertTrue(os.path.exists(map_name))
 
     def test_build_and_save(self):
-        """Test of the CubeAndStokes.build_and_save method."""
-        c_a_s = CubeAndStokes(TEST_MAP_PATH, NSIDE, OUT_DIR, norients=NORIENTS)
+        """Test of the CubeAndStokes.build_and_save method.
+        """
+        c_a_s = CubeAndStokes(
+            TEST_MAP_PATH, NSIDE, OUT_DIR, norients=NORIENTS, split_factor=1)
         c_a_s.build_and_save()
 
         cube_name = os.path.join(OUT_DIR, c_a_s.out_name + ".h5")
@@ -145,13 +160,14 @@ class TestCubeAndStokes(unittest.TestCase):
         self.assertTrue(os.path.exists(map_name))
 
         if os.path.exists(OUT_DIR):
-            shutil.rmtree(OUT_DIR)
+            shutil.rmtree(OUT_DIR, ignore_errors=True)
         kernel_alms_dir = os.path.join(
             os.path.expanduser("~"), ".cache/sphericalrht/kernel_alms")
         if os.path.exists(kernel_alms_dir):
-            shutil.rmtree(kernel_alms_dir)
+            shutil.rmtree(kernel_alms_dir, ignore_errors=True)
         c_a_s = CubeAndStokes((np.ones((NPIX)), c_a_s.name), float(NSIDE),
-                              OUT_DIR, norients=float(NORIENTS), wlen=75.)
+                              OUT_DIR, norients=float(NORIENTS), wlen=75.,
+                              weighting=np.ones((NPIX)), split_factor=1.)
         c_a_s.build_and_save()
 
         self.assertTrue(os.path.exists(cube_name))

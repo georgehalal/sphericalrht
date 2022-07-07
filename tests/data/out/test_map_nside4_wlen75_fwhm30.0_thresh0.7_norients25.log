@@ -1,0 +1,25 @@
+2022-03-04 11:58:16,632:INFO: * Output directory: /home/users/georgech/sphericalrht/tests/data/out
+2022-03-04 11:58:17,029:INFO: NSIDE = 2
+2022-03-04 11:58:17,030:INFO: ORDERING = RING in fits file
+2022-03-04 11:58:17,127:INFO: INDXSCHM = IMPLICIT
+2022-03-04 11:58:17,333:INFO: * Output directory: /home/users/georgech/sphericalrht/tests/data/out
+2022-03-04 11:58:19,739:INFO: NSIDE = 2
+2022-03-04 11:58:19,741:INFO: ORDERING = RING in fits file
+2022-03-04 11:58:19,742:INFO: INDXSCHM = IMPLICIT
+2022-03-04 11:58:19,748:INFO: * Output directory: /home/users/georgech/sphericalrht/tests/data/out
+2022-03-04 11:58:19,842:INFO: * Using 0.110641152GB of memory to make spherical RHT cube.
+2022-03-04 11:58:19,846:WARNING: setting the output map dtype to [dtype('float64'), dtype('float64'), dtype('float64')]
+2022-03-04 11:58:19,880:INFO: NSIDE = 2
+2022-03-04 11:58:19,881:INFO: ORDERING = RING in fits file
+2022-03-04 11:58:19,882:INFO: INDXSCHM = IMPLICIT
+2022-03-04 11:58:19,891:INFO: NSIDE = 2
+2022-03-04 11:58:19,892:INFO: ORDERING = RING in fits file
+2022-03-04 11:58:19,892:INFO: INDXSCHM = IMPLICIT
+2022-03-04 11:58:19,899:INFO: * Output directory: /home/users/georgech/sphericalrht/tests/data/out
+2022-03-04 11:58:24,926:INFO: Sigma is 12.739827 arcmin (0.003706 rad) 
+2022-03-04 11:58:25,227:INFO: -> fwhm is 30.000000 arcmin
+2022-03-04 11:58:25,426:INFO: Sigma is 0.000000 arcmin (0.000000 rad) 
+2022-03-04 11:58:25,626:INFO: -> fwhm is 0.000000 arcmin
+2022-03-04 11:58:26,126:INFO: 1.2.1
+2022-03-04 11:58:26,228:INFO: George Halal
+2022-03-04 11:58:26,426:INFO: halalgeorge@gmail.com

@@ -6,7 +6,7 @@ requires = [
 build-backend = "setuptools.build_meta"
 
 [tool.pytest.ini_options]
-addopts = "--cov=sphericalrht"
+addopts = "--cov=sphericalrht --cov-report term-missing"
 testpaths = [
     "tests",
 ]

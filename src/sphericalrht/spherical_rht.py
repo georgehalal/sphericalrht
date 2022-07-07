@@ -16,14 +16,14 @@ Classes:
 
 Author: George Halal
 Email: halalgeorge@gmail.com
-Date: 11/11/2021
-Version: 1.1.0
+Date: 07/06/2022
+Version: 1.2.1
 """
 
 
 __author__ = "George Halal"
 __email__ = "halalgeorge@gmail.com"
-__version__ = "1.1.0"
+__version__ = "1.2.1"
 __all__ = ["StokesQU", "CubeAndStokes"]
 
 
@@ -31,7 +31,7 @@ import os
 import time
 from collections import deque
 import logging
-from typing import Union, Tuple
+from typing import Union, Tuple, Optional
 from dataclasses import dataclass
 
 import psutil
@@ -55,10 +55,10 @@ class StokesQU:
     def __init__(self, npix: int) -> None:
         """Initialize linear Stokes maps.
 
-        Args:
+        Parameters:
             npix (int): Number of map pixels
         """
-        assert type(npix) is int, (
+        assert isinstance(npix, int), (
             "Number of pixels should bean integer")
 
         self.stokes_q = np.zeros((npix))
@@ -72,7 +72,7 @@ class StokesQU:
 
         Apply the Q/U formula from Clark & Hensley 2019.
 
-        Args:
+        Parameters:
             spherical_rht_cube (np.ndarray((Norientations, Npix))):
                 convolution result over different orientations
             orient_angs (np.ndarray((Norientations,))): orientation
@@ -87,24 +87,24 @@ class StokesQU:
         return None
 
     def normalize_and_weight(self, norm: np.ndarray,
-                             intensity: np.ndarray) -> None:
+                             weighting: np.ndarray) -> None:
         """Normalize and weight by the intensity.
 
         The maps are normalized such that the integral over angles = 1.
         They are then weighted by the intensity map.
 
-        Args:
+        Parameters:
             norm (np.ndarray((Npix,))): normalization
-            intensity (np.ndarray((Npix,))): input map
+            weighting (np.ndarray((Npix,))): weighting map
         """
-        assert norm.shape[0] == intensity.shape[0], (
+        assert norm.shape[0] == weighting.shape[0], (
             "One of the inputs has the wrong dimensions")
 
-        self.stokes_q[norm == 0] = np.nan
-        self.stokes_u[norm == 0] = np.nan
-        norm[norm == 0] = 1
-        self.stokes_q = -intensity * np.divide(self.stokes_q, norm)
-        self.stokes_u = intensity * np.divide(self.stokes_u, norm)
+        self.stokes_q[norm == 0] = 0.
+        self.stokes_u[norm == 0] = 0.
+        norm[norm == 0] = 1.
+        self.stokes_q = -weighting * np.divide(self.stokes_q, norm)
+        self.stokes_u = weighting * np.divide(self.stokes_u, norm)
 
         return None
 
@@ -129,21 +129,24 @@ class CubeAndStokes:
 
     def __init__(self, in_map: Union[str, Tuple[np.ndarray, str]], nside: int,
                  out_dir: str, wlen: int = 75, fwhm: float = 30.,
-                 thresh: float = 0.7, norients: int = 100,
-                 overwrite: bool = False) -> None:
+                 thresh: float = 0.7, norients: int = 25,
+                 weighting: Optional[Union[str, np.ndarray]] = None,
+                 overwrite: bool = False,
+                 split_factor: Optional[int] = None) -> None:
         """Define necessary variables based on the input arguments and
         make necessary directories.
 
-        Args:
+        Parameters:
             in_map (str or tuple(np.ndarray((Npix,)), str)): either
-                path to input intensity map or a tuple of the input
+                a path to the input intensity map or a tuple of the
                 intensity map as an array along with its name as a str,
                 which is used for saving log file, alms, spherical RHT
                 cube, and Stokes Q/U maps. The rest of the input options
-                will be appended to this name when saving.
+                will be appended to this name when saving. The input map
+                ordering is assumed to be RING.
             nside (int): output NSIDE for intensity and Stokes Q/U maps.
-            out_dir (str): directory to save log file, alms,
-                spherical RHT cube, and Stokes Q/U maps.
+            out_dir (str): directory to save log file, alms, spherical
+                RHT cube, and Stokes Q/U maps in COSMO convention.
             wlen (int): convolution kernel window diameter [arcmins]
                 (the scale at which to measure the orientation).
             fwhm (float): scale [arcmins] for the unsharp mask applied
@@ -155,17 +158,24 @@ class CubeAndStokes:
                 account, weighted by their intensity.
             norients (int): angular resolution given by the number of
                 orientations to consider.
+            weighting (str or np.ndarray((Npix,))): either a path to the
+                map or an array of the map pixels. This is used as the
+                weight for the output Stokes Q/U maps. The map ordering
+                is assumed to be RING.
             overwrite (bool): whether to overwrite outputs of same name
                 if they already exist.
+            split_factor (int): number of convolution splits to save on
+                memory usage. Default value is based on the requested
+                NSIDE and norients.
         """
-        assert type(in_map) is str or (
-            type(in_map) is tuple and type(in_map[0]) is np.ndarray
-            and type(in_map[1]) is str), ("Input map must be a path or a"
-                                          " tuple(np.ndarray, name)")
-        if type(in_map) is str:
+        assert isinstance(in_map, str) or (
+            isinstance(in_map, tuple) and
+            list(map(type, in_map)) == [np.ndarray, str]), (
+            "Input map must be a path or a tuple(np.ndarray, name)")
+        if isinstance(in_map, str):
             assert os.path.exists(in_map), (
                 "Input map does not exist. Check path and try again.")
-            self.in_map = in_map
+            self.in_map = hp.read_map(in_map, field=(0))
             self.name = in_map.split("/")[-1].split(".fits")[0]
         else:
             self.in_map = in_map[0]
@@ -173,51 +183,61 @@ class CubeAndStokes:
             assert np.sqrt(self.in_map.shape[0]/12) % 1 == 0, (
                "Input map has the wrong shape or number of pixels.")
 
-        if type(nside) is float:
-            assert nside % 1 == 0, "NSIDE must be an integer"
-            nside = int(nside)
-        else:
-            assert type(nside) is int, "NSIDE must be an integer"
-        self.nside = nside
+        assert nside % 1 == 0 and nside > 0, "NSIDE must be a positive integer"
+        self.nside = int(nside)
 
-        assert type(out_dir) is str, "Output directory must be a str"
+        assert isinstance(out_dir, str), "Output directory must be a str"
         if not os.path.exists(out_dir):
             os.makedirs(out_dir)
         self.out_dir = out_dir
 
-        if type(wlen) is float:
-            assert wlen % 1 == 0, "Window diameter must be an integer"
-            wlen = int(wlen)
-        else:
-            assert type(wlen) is int, "Window diameter must be an integer"
-        assert wlen > 0, "Window diameter must be positive"
-        self.wlen = wlen
+        assert wlen % 1 == 0 and wlen > 0, "wlen must be a positive integer"
+        self.wlen = int(wlen)
 
-        assert type(fwhm) is float or type(fwhm) is int, "FWHM type is invalid"
+        assert isinstance(fwhm, (float, int)), "FWHM type is invalid"
         assert fwhm > 0, "FWHM must be positive"
         self.fwhm = fwhm
         if fwhm % 1 == 0:
             self.fwhm = int(fwhm)
 
-        assert type(thresh) is float or type(thresh) is int, (
-            "Threshold type is invalid")
+        assert isinstance(thresh, (float, int)), "Threshold type is invalid"
         assert thresh >= 0 and thresh < 1, "Threshold must be between 0-1"
         self.thresh = thresh
 
-        if type(norients) is float:
-            assert norients % 1 == 0, (
-                "Number of orientations must be an integer")
-            norients = int(norients)
+        assert norients % 1 == 0 and norients > 0, (
+            "Number of orientations must be a positive integer")
+        self.norients = int(norients)
+
+        if weighting is not None:
+            assert isinstance(weighting, str) or (
+                isinstance(weighting, np.ndarray)), (
+                "Weighting map must be a path or an np.ndarray")
+            if isinstance(weighting, str):
+                assert os.path.exists(weighting), (
+                    "Weighting map does not exist. Check path and try again.")
+                if isinstance(in_map, str) and weighting == in_map:
+                    self.weighting = self.in_map
+                else:
+                    self.weighting = hp.read_map(weighting, field=(0))
+            else:
+                assert np.sqrt(weighting.shape[0]/12) % 1 == 0, (
+                    "Weighting map has the wrong shape or number of pixels.")
+                self.weighting = weighting
         else:
-            assert type(norients) is int, (
-                "Number of orientations must be an integer")
-        assert norients > 0, "Number of orientations must be positive"
-        self.norients = norients
+            self.weighting = self.in_map
 
         self.overwrite = overwrite
 
-        self.out_name = (f"{self.name}_nside{nside}_wlen{wlen}_fwhm{fwhm}"
-                         f"_thresh{thresh}_norients{norients}")
+        if split_factor is not None:
+            assert split_factor % 1 == 0 and split_factor > 0, (
+                "Split factor must be a positive integer")
+            self.split_factor = int(split_factor)
+        else:
+            self.split_factor = np.ceil(
+                self.nside**2/2048**2 * self.norients/25)
+
+        self.out_name = (f"{self.name}_nside{self.nside}_wlen{self.wlen}"
+                         f"_fwhm{fwhm}_thresh{thresh}_norients{self.norients}")
 
         set_logger(os.path.join(out_dir, self.out_name + ".log"))
         logging.info(f"* Output directory: {out_dir}")
@@ -236,7 +256,7 @@ class CubeAndStokes:
     def unsharp_mask(self, original_map: np.ndarray) -> np.ndarray:
         """High-pass filter the input map and make it binary.
 
-        Args:
+        Parameters:
             original_map (np.ndarray((Npix,))): map to
                 high-pass filter
 
@@ -254,39 +274,34 @@ class CubeAndStokes:
         """Process the intensity map for saving with the Stokes Q/U
         maps and optionally calculate alms for the convolution.
 
-        Args:
+        Parameters:
             return_alm (bool): whether to calculate and return alms
 
         Returns:
             intensity_out (np.ndarray((Npix,))): intensity map to
                 save
-            (optional) umask_intensity_alm (np.ndarray((1, Nalms))):
+            (optional) intensity_alm (np.ndarray((1, Nalms))):
                 processed alms used for convolution
         """
-        if type(self.in_map) is str:
-            intensity = hp.read_map(self.in_map, field=(0))
-        else:
-            intensity = self.in_map
-
-        intensity_nside = hp.get_nside(intensity)
+        intensity_nside = hp.get_nside(self.in_map)
 
         if self.nside == intensity_nside:
-            intensity_out = intensity
+            intensity_out = self.in_map
         else:
-            intensity_out = hp.ud_grade(intensity, self.nside)
+            intensity_out = hp.ud_grade(self.in_map, self.nside)
 
         if return_alm:
             if self.ker_nside == intensity_nside:
-                intensity_in = intensity
+                intensity_in = self.in_map
             elif self.ker_nside == self.nside:
                 intensity_in = intensity_out
             else:
-                intensity_in = hp.ud_grade(intensity, self.ker_nside)
+                intensity_in = hp.ud_grade(self.in_map, self.ker_nside)
 
-            umask_intensity = self.unsharp_mask(intensity_in)
-            umask_intensity_alm = hp.map2alm(
-                umask_intensity, self.lmax).reshape((1, -1))
-            return intensity_out, umask_intensity_alm
+            intensity_in = self.unsharp_mask(intensity_in)
+            intensity_alm = hp.map2alm(
+                intensity_in, self.lmax).reshape((1, -1))
+            return intensity_out, intensity_alm
 
         return intensity_out
 
@@ -350,7 +365,7 @@ class CubeAndStokes:
         """Prepare pointing tensor of co-latitudes, longitudes, and
         kernel orientations.
 
-        Args:
+        Parameters:
             npix (int): Number of pixels to calculate the convolution on
             orients (np.ndarray((Norientations,))): Angles by which
                 to rotate the kernel
@@ -367,14 +382,11 @@ class CubeAndStokes:
         return np.vstack((thetas, phis, psis)).T
 
     def save_cube_and_stokes(
-            self, split_factor: int, intensity: np.ndarray,
+            self, intensity: np.ndarray,
             interpolator: ducc0.totalconvolve.Interpolator) -> None:
         """Run the convolution and save the resulting cube and maps.
 
-        Args:
-            split_factor (int): number of convolution splits based on
-                the requested NSIDE and number of orientations to save
-                on memory usage
+        Parameters:
             intensity (np.ndarray((Npix,)): intensity map to save
             interpolator (ducc0.totalconvolve.Interpolator): object
                 encapsulating the convolution functionality
@@ -386,8 +398,8 @@ class CubeAndStokes:
         orients = np.linspace(0.0, np.pi, self.norients)
         # Angle values corresponding to the kernel rotation angles
         orient_angs = np.flip(orients)
-        orients = np.array_split(orients, split_factor)
-        orient_angs = np.array_split(orient_angs, split_factor)
+        orients = np.array_split(orients, self.split_factor)
+        orient_angs = np.array_split(orient_angs, self.split_factor)
 
         # Find the size of each split
         bnd = 0
@@ -424,7 +436,7 @@ class CubeAndStokes:
 
         f.close()
 
-        stokes.normalize_and_weight(norm, intensity)
+        stokes.normalize_and_weight(norm, self.weighting)
 
         hp.write_map(os.path.join(self.out_dir, "IQU_" + self.out_name
                      + ".fits"), (intensity, stokes.stokes_q, stokes.stokes_u),
@@ -445,12 +457,13 @@ class CubeAndStokes:
                          "Change overwrite to True to overwrite them.")
             return None
 
-        start_time = time.time()
+        # more accurate than time.time()
+        start_time = time.perf_counter()
 
         intensity_alm_file = os.path.join(
             self.out_dir, self.name
             + f"_alms_nside{self.ker_nside}_fwhm{self.fwhm}.npy")
-        if os.path.exists(intensity_alm_file):
+        if os.path.exists(intensity_alm_file) and not self.overwrite:
             logging.info("* Input map alms exist.")
             intensity_alm = np.load(intensity_alm_file)
             intensity = self.prep_intensity()
@@ -482,13 +495,11 @@ class CubeAndStokes:
         logging.info("* Interpolator configured.")
         del intensity_alm, ker_alm
 
-        # Decide how many convolution steps to perform in order not to
-        # have everything in memory at once
-        split_factor = np.ceil(self.nside**2/512**2 * self.norients/300)
-        self.save_cube_and_stokes(split_factor, intensity, interpolator)
+        self.save_cube_and_stokes(intensity, interpolator)
 
         logging.info("* Saved cube and maps in output directory.")
         logging.info(
-            f"* Total run time = {(time.time()-start_time) / 60.} mins.")
+            f"* Total run time = {(time.perf_counter()-start_time) / 60.}"
+            " mins.")
 
         return None

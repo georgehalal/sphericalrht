@@ -20,8 +20,8 @@ Functions:
 
 Author: George Halal
 Email: halalgeorge@gmail.com
-Date: 11/07/2021
-Version: 1.1.0
+Date: 07/06/2022
+Version: 1.2.1
 """
 
 
@@ -31,5 +31,5 @@ from .utils import set_logger
 
 __author__ = "George Halal"
 __email__ = "halalgeorge@gmail.com"
-__version__ = "1.1.0"
+__version__ = "1.2.1"
 __all__ = ["StokesQU", "CubeAndStokes", "set_logger"]
