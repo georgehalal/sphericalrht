@@ -161,7 +161,7 @@ class CubeAndStokes:
                 orientations to consider.
             mask (str or np.ndarray((Npix,))): either a path to the map
                 or an array of the map pixels. This defines the mask for
-                maps that are not defined over the entire sky. 
+                maps that are not defined over the entire sky.
             weighting (str or np.ndarray((Npix,))): either a path to the
                 map or an array of the map pixels. This is used as the
                 weight for the output Stokes Q/U maps. The map ordering
@@ -285,7 +285,7 @@ class CubeAndStokes:
 
         smoothed_map = hp.smoothing(
             original_map * self.mask, fwhm=np.radians(self.fwhm / 60.))
-        
+
         subtracted_map = original_map*self.mask - smoothed_map
 
         return (subtracted_map > 0.).astype(int)
@@ -398,7 +398,7 @@ class CubeAndStokes:
         return np.vstack((thetas, phis, psis)).T
 
     def save_cube_and_stokes(
-            self, 
+            self,
             interpolator: ducc0.totalconvolve.Interpolator) -> None:
         """Run the convolution and save the resulting cube and maps.
 

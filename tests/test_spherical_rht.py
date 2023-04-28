@@ -24,8 +24,8 @@ from sphericalrht import StokesQU, CubeAndStokes
 NSIDE = 2
 NPIX = 12 * NSIDE**2
 NORIENTS = 6
-TEST_MAP_PATH = os.path.abspath("tests/data/test_map.fits") 
-TEST_MAP2_PATH = os.path.abspath("tests/data/test_map2.fits") 
+TEST_MAP_PATH = os.path.abspath("tests/data/test_map.fits")
+TEST_MAP2_PATH = os.path.abspath("tests/data/test_map2.fits")
 OUT_DIR = os.path.abspath("tests/data/out")
 
 
