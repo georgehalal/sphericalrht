@@ -17,13 +17,13 @@ Classes:
 Author: George Halal
 Email: halalgeorge@gmail.com
 Date: 04/27/2023
-Version: 2.0.0
+Version: 2.0.1
 """
 
 
 __author__ = "George Halal"
 __email__ = "halalgeorge@gmail.com"
-__version__ = "2.0.0"
+__version__ = "2.0.1"
 __all__ = ["StokesQU", "CubeAndStokes"]
 
 
@@ -227,6 +227,10 @@ class CubeAndStokes:
         self.norients = int(norients)
 
         if weighting is not None:
+            # needed since self.weighting is not declared otherwise and
+            # needs to be replaced with self.in_map AFTER self.in_map
+            # has been proccessed.
+            self.weighting_flag = True
             assert isinstance(weighting, str) or (
                 isinstance(weighting, np.ndarray)), (
                 "Weighting map must be a path or an np.ndarray")
@@ -243,6 +247,8 @@ class CubeAndStokes:
                 self.weighting = weighting
             if hp.get_nside(self.weighting) != self.nside:
                 self.weighting = hp.ud_grade(self.weighting, self.nside)
+        else:
+            self.weighting_flag = False
 
         self.overwrite = overwrite
 
@@ -451,7 +457,7 @@ class CubeAndStokes:
 
         f.close()
 
-        if self.weighting is not None:
+        if self.weighting_flag:
             stokes.normalize_and_weight(norm, self.weighting)
         else:
             stokes.normalize_and_weight(norm, self.in_map)
