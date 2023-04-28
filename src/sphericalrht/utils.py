@@ -6,7 +6,7 @@ set_logger: Log output in the terminal to a file.
 
 Author: George Halal
 Email: halalgeorge@gmail.com
-Date: 07/06/2022
+Date: 04/27/2023
 """
 
 
@@ -15,7 +15,7 @@ import logging
 
 __author__ = "George Halal"
 __email__ = "halalgeorge@gmail.com"
-__version__ = "1.2.2"
+__version__ = "2.0.0"
 __all__ = ["set_logger"]
 
 

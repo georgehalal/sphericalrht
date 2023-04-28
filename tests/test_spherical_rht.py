@@ -7,7 +7,7 @@ Qualitative tests have been performed separately on toy models.
 
 Author: George Halal
 Email: halalgeorge@gmail.com
-Date: 11/11/2021
+Date: 04/27/2023
 """
 
 
@@ -24,8 +24,8 @@ from sphericalrht import StokesQU, CubeAndStokes
 NSIDE = 2
 NPIX = 12 * NSIDE**2
 NORIENTS = 6
-TEST_MAP_PATH = os.path.abspath("tests/data/test_map.fits")
-TEST_MAP2_PATH = os.path.abspath("tests/data/test_map2.fits")
+TEST_MAP_PATH = os.path.abspath("tests/data/test_map.fits") 
+TEST_MAP2_PATH = os.path.abspath("tests/data/test_map2.fits") 
 OUT_DIR = os.path.abspath("tests/data/out")
 
 
@@ -63,22 +63,24 @@ class TestCubeAndStokes(unittest.TestCase):
         """Test of the CubeAndStokes.unsharp_mask method.
         """
         c_a_s = CubeAndStokes(
-            TEST_MAP_PATH, NSIDE, OUT_DIR, weighting=TEST_MAP2_PATH)
+            TEST_MAP_PATH, NSIDE, OUT_DIR, weighting=TEST_MAP_PATH,
+            mask=TEST_MAP_PATH)
         test_map = np.ones((NPIX))
         umask_map = c_a_s.unsharp_mask(test_map)
 
+        # we expect the ones to become halves
         self.assertEqual(np.sum(umask_map), NPIX/2)
 
     def test_prep_intensity(self):
         """Test of the CubeAndStokes.prep_intensity method.
         """
         c_a_s = CubeAndStokes(TEST_MAP_PATH, 4, OUT_DIR)
-        out_map = c_a_s.prep_intensity()
-        self.assertEqual(out_map.shape[0], 12 * 4**2)
+        c_a_s.prep_intensity()
+        self.assertEqual(c_a_s.in_map.shape[0], 12 * 4**2)
 
         c_a_s = CubeAndStokes(TEST_MAP_PATH, 1024, OUT_DIR)
-        out_map = c_a_s.prep_intensity()
-        self.assertEqual(out_map.shape[0], 12 * 1024**2)
+        c_a_s.prep_intensity()
+        self.assertEqual(c_a_s.in_map.shape[0], 12 * 1024**2)
 
     def test_make_ker(self):
         """Test of the CubeAndStokes.make_ker method.
@@ -115,7 +117,7 @@ class TestCubeAndStokes(unittest.TestCase):
         """
         c_a_s = CubeAndStokes(
             TEST_MAP_PATH, NSIDE, OUT_DIR, norients=NORIENTS,
-            weighting=TEST_MAP_PATH)
+            weighting=TEST_MAP2_PATH, mask=np.ones((NPIX)))
         lmax = c_a_s.lmax
         mmax = min(c_a_s.mmax, lmax)
 
@@ -138,8 +140,8 @@ class TestCubeAndStokes(unittest.TestCase):
                                                         epsilon=1e-4,
                                                         ofactor=1.5,
                                                         nthreads=0)
-        intensity = np.ones((NPIX))
-        c_a_s.save_cube_and_stokes(intensity, interpolator)
+
+        c_a_s.save_cube_and_stokes(interpolator)
 
         cube_name = os.path.join(OUT_DIR, c_a_s.out_name + ".h5")
         map_name = os.path.join(OUT_DIR, "IQU_" + c_a_s.out_name + ".fits")
@@ -149,8 +151,8 @@ class TestCubeAndStokes(unittest.TestCase):
     def test_build_and_save(self):
         """Test of the CubeAndStokes.build_and_save method.
         """
-        c_a_s = CubeAndStokes(
-            TEST_MAP_PATH, NSIDE, OUT_DIR, norients=NORIENTS, split_factor=1)
+        c_a_s = CubeAndStokes(TEST_MAP_PATH, NSIDE, OUT_DIR, norients=NORIENTS,
+                              weighting=np.ones((12 * 4**2)), split_factor=1)
         c_a_s.build_and_save()
 
         cube_name = os.path.join(OUT_DIR, c_a_s.out_name + ".h5")

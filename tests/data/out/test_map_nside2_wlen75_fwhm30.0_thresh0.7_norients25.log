@@ -1,109 +1,109 @@
-2022-03-04 11:58:05,133:INFO: * Output directory: /home/users/georgech/sphericalrht/tests/data/out
-2022-03-04 11:58:07,527:INFO: Sigma is 746.965377 arcmin (0.217283 rad) 
-2022-03-04 11:58:07,527:INFO: -> fwhm is 1758.969043 arcmin
-2022-03-04 11:58:09,226:INFO: NSIDE = 2
-2022-03-04 11:58:09,926:INFO: ORDERING = RING in fits file
-2022-03-04 11:58:10,026:INFO: INDXSCHM = IMPLICIT
-2022-03-04 11:58:10,927:INFO: * Output directory: /home/users/georgech/sphericalrht/tests/data/out
-2022-03-04 11:58:10,927:INFO: * Output directory: /home/users/georgech/sphericalrht/tests/data/out
-2022-03-04 11:58:12,326:INFO: NSIDE = 2
-2022-03-04 11:58:12,326:INFO: NSIDE = 2
-2022-03-04 11:58:12,328:INFO: ORDERING = RING in fits file
-2022-03-04 11:58:12,328:INFO: ORDERING = RING in fits file
-2022-03-04 11:58:12,330:INFO: INDXSCHM = IMPLICIT
-2022-03-04 11:58:12,330:INFO: INDXSCHM = IMPLICIT
-2022-03-04 11:58:14,928:INFO: * Output directory: /home/users/georgech/sphericalrht/tests/data/out
-2022-03-04 11:58:14,928:INFO: * Output directory: /home/users/georgech/sphericalrht/tests/data/out
-2022-03-04 11:58:14,928:INFO: * Output directory: /home/users/georgech/sphericalrht/tests/data/out
-2022-03-04 11:58:15,726:INFO: NSIDE = 2
-2022-03-04 11:58:15,726:INFO: NSIDE = 2
-2022-03-04 11:58:15,726:INFO: NSIDE = 2
-2022-03-04 11:58:15,926:INFO: ORDERING = RING in fits file
-2022-03-04 11:58:15,926:INFO: ORDERING = RING in fits file
-2022-03-04 11:58:15,926:INFO: ORDERING = RING in fits file
-2022-03-04 11:58:16,126:INFO: INDXSCHM = IMPLICIT
-2022-03-04 11:58:16,126:INFO: INDXSCHM = IMPLICIT
-2022-03-04 11:58:16,126:INFO: INDXSCHM = IMPLICIT
-2022-03-04 11:58:16,632:INFO: * Output directory: /home/users/georgech/sphericalrht/tests/data/out
-2022-03-04 11:58:16,632:INFO: * Output directory: /home/users/georgech/sphericalrht/tests/data/out
-2022-03-04 11:58:16,632:INFO: * Output directory: /home/users/georgech/sphericalrht/tests/data/out
-2022-03-04 11:58:17,029:INFO: NSIDE = 2
-2022-03-04 11:58:17,029:INFO: NSIDE = 2
-2022-03-04 11:58:17,029:INFO: NSIDE = 2
-2022-03-04 11:58:17,030:INFO: ORDERING = RING in fits file
-2022-03-04 11:58:17,030:INFO: ORDERING = RING in fits file
-2022-03-04 11:58:17,030:INFO: ORDERING = RING in fits file
-2022-03-04 11:58:17,127:INFO: INDXSCHM = IMPLICIT
-2022-03-04 11:58:17,127:INFO: INDXSCHM = IMPLICIT
-2022-03-04 11:58:17,127:INFO: INDXSCHM = IMPLICIT
-2022-03-04 11:58:17,333:INFO: * Output directory: /home/users/georgech/sphericalrht/tests/data/out
-2022-03-04 11:58:17,333:INFO: * Output directory: /home/users/georgech/sphericalrht/tests/data/out
-2022-03-04 11:58:17,333:INFO: * Output directory: /home/users/georgech/sphericalrht/tests/data/out
-2022-03-04 11:58:19,739:INFO: NSIDE = 2
-2022-03-04 11:58:19,739:INFO: NSIDE = 2
-2022-03-04 11:58:19,739:INFO: NSIDE = 2
-2022-03-04 11:58:19,741:INFO: ORDERING = RING in fits file
-2022-03-04 11:58:19,741:INFO: ORDERING = RING in fits file
-2022-03-04 11:58:19,741:INFO: ORDERING = RING in fits file
-2022-03-04 11:58:19,742:INFO: INDXSCHM = IMPLICIT
-2022-03-04 11:58:19,742:INFO: INDXSCHM = IMPLICIT
-2022-03-04 11:58:19,742:INFO: INDXSCHM = IMPLICIT
-2022-03-04 11:58:19,748:INFO: * Output directory: /home/users/georgech/sphericalrht/tests/data/out
-2022-03-04 11:58:19,748:INFO: * Output directory: /home/users/georgech/sphericalrht/tests/data/out
-2022-03-04 11:58:19,748:INFO: * Output directory: /home/users/georgech/sphericalrht/tests/data/out
-2022-03-04 11:58:19,842:INFO: * Using 0.110641152GB of memory to make spherical RHT cube.
-2022-03-04 11:58:19,842:INFO: * Using 0.110641152GB of memory to make spherical RHT cube.
-2022-03-04 11:58:19,842:INFO: * Using 0.110641152GB of memory to make spherical RHT cube.
-2022-03-04 11:58:19,846:WARNING: setting the output map dtype to [dtype('float64'), dtype('float64'), dtype('float64')]
-2022-03-04 11:58:19,846:WARNING: setting the output map dtype to [dtype('float64'), dtype('float64'), dtype('float64')]
-2022-03-04 11:58:19,846:WARNING: setting the output map dtype to [dtype('float64'), dtype('float64'), dtype('float64')]
-2022-03-04 11:58:19,880:INFO: NSIDE = 2
-2022-03-04 11:58:19,880:INFO: NSIDE = 2
-2022-03-04 11:58:19,880:INFO: NSIDE = 2
-2022-03-04 11:58:19,881:INFO: ORDERING = RING in fits file
-2022-03-04 11:58:19,881:INFO: ORDERING = RING in fits file
-2022-03-04 11:58:19,881:INFO: ORDERING = RING in fits file
-2022-03-04 11:58:19,882:INFO: INDXSCHM = IMPLICIT
-2022-03-04 11:58:19,882:INFO: INDXSCHM = IMPLICIT
-2022-03-04 11:58:19,882:INFO: INDXSCHM = IMPLICIT
-2022-03-04 11:58:19,891:INFO: NSIDE = 2
-2022-03-04 11:58:19,891:INFO: NSIDE = 2
-2022-03-04 11:58:19,891:INFO: NSIDE = 2
-2022-03-04 11:58:19,892:INFO: ORDERING = RING in fits file
-2022-03-04 11:58:19,892:INFO: ORDERING = RING in fits file
-2022-03-04 11:58:19,892:INFO: ORDERING = RING in fits file
-2022-03-04 11:58:19,892:INFO: INDXSCHM = IMPLICIT
-2022-03-04 11:58:19,892:INFO: INDXSCHM = IMPLICIT
-2022-03-04 11:58:19,892:INFO: INDXSCHM = IMPLICIT
-2022-03-04 11:58:19,899:INFO: * Output directory: /home/users/georgech/sphericalrht/tests/data/out
-2022-03-04 11:58:19,899:INFO: * Output directory: /home/users/georgech/sphericalrht/tests/data/out
-2022-03-04 11:58:19,899:INFO: * Output directory: /home/users/georgech/sphericalrht/tests/data/out
-2022-03-04 11:58:19,899:INFO: * Output directory: /home/users/georgech/sphericalrht/tests/data/out
-2022-03-04 11:58:24,926:INFO: Sigma is 12.739827 arcmin (0.003706 rad) 
-2022-03-04 11:58:24,926:INFO: Sigma is 12.739827 arcmin (0.003706 rad) 
-2022-03-04 11:58:24,926:INFO: Sigma is 12.739827 arcmin (0.003706 rad) 
-2022-03-04 11:58:24,926:INFO: Sigma is 12.739827 arcmin (0.003706 rad) 
-2022-03-04 11:58:25,227:INFO: -> fwhm is 30.000000 arcmin
-2022-03-04 11:58:25,227:INFO: -> fwhm is 30.000000 arcmin
-2022-03-04 11:58:25,227:INFO: -> fwhm is 30.000000 arcmin
-2022-03-04 11:58:25,227:INFO: -> fwhm is 30.000000 arcmin
-2022-03-04 11:58:25,426:INFO: Sigma is 0.000000 arcmin (0.000000 rad) 
-2022-03-04 11:58:25,426:INFO: Sigma is 0.000000 arcmin (0.000000 rad) 
-2022-03-04 11:58:25,426:INFO: Sigma is 0.000000 arcmin (0.000000 rad) 
-2022-03-04 11:58:25,426:INFO: Sigma is 0.000000 arcmin (0.000000 rad) 
-2022-03-04 11:58:25,626:INFO: -> fwhm is 0.000000 arcmin
-2022-03-04 11:58:25,626:INFO: -> fwhm is 0.000000 arcmin
-2022-03-04 11:58:25,626:INFO: -> fwhm is 0.000000 arcmin
-2022-03-04 11:58:25,626:INFO: -> fwhm is 0.000000 arcmin
-2022-03-04 11:58:26,126:INFO: 1.2.1
-2022-03-04 11:58:26,126:INFO: 1.2.1
-2022-03-04 11:58:26,126:INFO: 1.2.1
-2022-03-04 11:58:26,126:INFO: 1.2.1
-2022-03-04 11:58:26,228:INFO: George Halal
-2022-03-04 11:58:26,228:INFO: George Halal
-2022-03-04 11:58:26,228:INFO: George Halal
-2022-03-04 11:58:26,228:INFO: George Halal
-2022-03-04 11:58:26,426:INFO: halalgeorge@gmail.com
-2022-03-04 11:58:26,426:INFO: halalgeorge@gmail.com
-2022-03-04 11:58:26,426:INFO: halalgeorge@gmail.com
-2022-03-04 11:58:26,426:INFO: halalgeorge@gmail.com
+2022-07-06 18:17:43,265:INFO: * Output directory: /home/users/georgech/sphericalrht/tests/data/out
+2022-07-06 18:18:21,565:INFO: Sigma is 746.965377 arcmin (0.217283 rad) 
+2022-07-06 18:18:21,865:INFO: -> fwhm is 1758.969043 arcmin
+2022-07-06 18:18:24,465:INFO: NSIDE = 2
+2022-07-06 18:18:24,465:INFO: ORDERING = RING in fits file
+2022-07-06 18:18:24,665:INFO: INDXSCHM = IMPLICIT
+2022-07-06 18:18:25,468:INFO: * Output directory: /home/users/georgech/sphericalrht/tests/data/out
+2022-07-06 18:18:25,468:INFO: * Output directory: /home/users/georgech/sphericalrht/tests/data/out
+2022-07-06 18:18:26,965:INFO: NSIDE = 2
+2022-07-06 18:18:26,965:INFO: NSIDE = 2
+2022-07-06 18:18:27,165:INFO: ORDERING = RING in fits file
+2022-07-06 18:18:27,165:INFO: ORDERING = RING in fits file
+2022-07-06 18:18:27,465:INFO: INDXSCHM = IMPLICIT
+2022-07-06 18:18:27,465:INFO: INDXSCHM = IMPLICIT
+2022-07-06 18:18:28,565:INFO: * Output directory: /home/users/georgech/sphericalrht/tests/data/out
+2022-07-06 18:18:28,565:INFO: * Output directory: /home/users/georgech/sphericalrht/tests/data/out
+2022-07-06 18:18:28,565:INFO: * Output directory: /home/users/georgech/sphericalrht/tests/data/out
+2022-07-06 18:18:29,965:INFO: NSIDE = 2
+2022-07-06 18:18:29,965:INFO: NSIDE = 2
+2022-07-06 18:18:29,965:INFO: NSIDE = 2
+2022-07-06 18:18:30,165:INFO: ORDERING = RING in fits file
+2022-07-06 18:18:30,165:INFO: ORDERING = RING in fits file
+2022-07-06 18:18:30,165:INFO: ORDERING = RING in fits file
+2022-07-06 18:18:30,165:INFO: INDXSCHM = IMPLICIT
+2022-07-06 18:18:30,165:INFO: INDXSCHM = IMPLICIT
+2022-07-06 18:18:30,165:INFO: INDXSCHM = IMPLICIT
+2022-07-06 18:18:31,065:INFO: * Output directory: /home/users/georgech/sphericalrht/tests/data/out
+2022-07-06 18:18:31,065:INFO: * Output directory: /home/users/georgech/sphericalrht/tests/data/out
+2022-07-06 18:18:31,065:INFO: * Output directory: /home/users/georgech/sphericalrht/tests/data/out
+2022-07-06 18:18:32,166:INFO: NSIDE = 2
+2022-07-06 18:18:32,166:INFO: NSIDE = 2
+2022-07-06 18:18:32,166:INFO: NSIDE = 2
+2022-07-06 18:18:32,365:INFO: ORDERING = RING in fits file
+2022-07-06 18:18:32,365:INFO: ORDERING = RING in fits file
+2022-07-06 18:18:32,365:INFO: ORDERING = RING in fits file
+2022-07-06 18:18:32,366:INFO: INDXSCHM = IMPLICIT
+2022-07-06 18:18:32,366:INFO: INDXSCHM = IMPLICIT
+2022-07-06 18:18:32,366:INFO: INDXSCHM = IMPLICIT
+2022-07-06 18:18:33,265:INFO: * Output directory: /home/users/georgech/sphericalrht/tests/data/out
+2022-07-06 18:18:33,265:INFO: * Output directory: /home/users/georgech/sphericalrht/tests/data/out
+2022-07-06 18:18:33,265:INFO: * Output directory: /home/users/georgech/sphericalrht/tests/data/out
+2022-07-06 18:19:39,565:INFO: NSIDE = 2
+2022-07-06 18:19:39,565:INFO: NSIDE = 2
+2022-07-06 18:19:39,565:INFO: NSIDE = 2
+2022-07-06 18:19:39,669:INFO: ORDERING = RING in fits file
+2022-07-06 18:19:39,669:INFO: ORDERING = RING in fits file
+2022-07-06 18:19:39,669:INFO: ORDERING = RING in fits file
+2022-07-06 18:19:39,670:INFO: INDXSCHM = IMPLICIT
+2022-07-06 18:19:39,670:INFO: INDXSCHM = IMPLICIT
+2022-07-06 18:19:39,670:INFO: INDXSCHM = IMPLICIT
+2022-07-06 18:19:39,775:INFO: * Output directory: /home/users/georgech/sphericalrht/tests/data/out
+2022-07-06 18:19:39,775:INFO: * Output directory: /home/users/georgech/sphericalrht/tests/data/out
+2022-07-06 18:19:39,775:INFO: * Output directory: /home/users/georgech/sphericalrht/tests/data/out
+2022-07-06 18:19:42,465:INFO: * Using 0.112955392GB of memory to make spherical RHT cube.
+2022-07-06 18:19:42,465:INFO: * Using 0.112955392GB of memory to make spherical RHT cube.
+2022-07-06 18:19:42,465:INFO: * Using 0.112955392GB of memory to make spherical RHT cube.
+2022-07-06 18:19:42,469:WARNING: setting the output map dtype to [dtype('float64'), dtype('float64'), dtype('float64')]
+2022-07-06 18:19:42,469:WARNING: setting the output map dtype to [dtype('float64'), dtype('float64'), dtype('float64')]
+2022-07-06 18:19:42,469:WARNING: setting the output map dtype to [dtype('float64'), dtype('float64'), dtype('float64')]
+2022-07-06 18:19:42,870:INFO: NSIDE = 2
+2022-07-06 18:19:42,870:INFO: NSIDE = 2
+2022-07-06 18:19:42,870:INFO: NSIDE = 2
+2022-07-06 18:19:42,871:INFO: ORDERING = RING in fits file
+2022-07-06 18:19:42,871:INFO: ORDERING = RING in fits file
+2022-07-06 18:19:42,871:INFO: ORDERING = RING in fits file
+2022-07-06 18:19:42,872:INFO: INDXSCHM = IMPLICIT
+2022-07-06 18:19:42,872:INFO: INDXSCHM = IMPLICIT
+2022-07-06 18:19:42,872:INFO: INDXSCHM = IMPLICIT
+2022-07-06 18:19:43,065:INFO: NSIDE = 2
+2022-07-06 18:19:43,065:INFO: NSIDE = 2
+2022-07-06 18:19:43,065:INFO: NSIDE = 2
+2022-07-06 18:19:43,066:INFO: ORDERING = RING in fits file
+2022-07-06 18:19:43,066:INFO: ORDERING = RING in fits file
+2022-07-06 18:19:43,066:INFO: ORDERING = RING in fits file
+2022-07-06 18:19:43,066:INFO: INDXSCHM = IMPLICIT
+2022-07-06 18:19:43,066:INFO: INDXSCHM = IMPLICIT
+2022-07-06 18:19:43,066:INFO: INDXSCHM = IMPLICIT
+2022-07-06 18:19:43,072:INFO: * Output directory: /home/users/georgech/sphericalrht/tests/data/out
+2022-07-06 18:19:43,072:INFO: * Output directory: /home/users/georgech/sphericalrht/tests/data/out
+2022-07-06 18:19:43,072:INFO: * Output directory: /home/users/georgech/sphericalrht/tests/data/out
+2022-07-06 18:19:43,072:INFO: * Output directory: /home/users/georgech/sphericalrht/tests/data/out
+2022-07-06 18:20:00,265:INFO: Sigma is 12.739827 arcmin (0.003706 rad) 
+2022-07-06 18:20:00,265:INFO: Sigma is 12.739827 arcmin (0.003706 rad) 
+2022-07-06 18:20:00,265:INFO: Sigma is 12.739827 arcmin (0.003706 rad) 
+2022-07-06 18:20:00,265:INFO: Sigma is 12.739827 arcmin (0.003706 rad) 
+2022-07-06 18:20:00,965:INFO: -> fwhm is 30.000000 arcmin
+2022-07-06 18:20:00,965:INFO: -> fwhm is 30.000000 arcmin
+2022-07-06 18:20:00,965:INFO: -> fwhm is 30.000000 arcmin
+2022-07-06 18:20:00,965:INFO: -> fwhm is 30.000000 arcmin
+2022-07-06 18:20:00,966:INFO: Sigma is 0.000000 arcmin (0.000000 rad) 
+2022-07-06 18:20:00,966:INFO: Sigma is 0.000000 arcmin (0.000000 rad) 
+2022-07-06 18:20:00,966:INFO: Sigma is 0.000000 arcmin (0.000000 rad) 
+2022-07-06 18:20:00,966:INFO: Sigma is 0.000000 arcmin (0.000000 rad) 
+2022-07-06 18:20:01,165:INFO: -> fwhm is 0.000000 arcmin
+2022-07-06 18:20:01,165:INFO: -> fwhm is 0.000000 arcmin
+2022-07-06 18:20:01,165:INFO: -> fwhm is 0.000000 arcmin
+2022-07-06 18:20:01,165:INFO: -> fwhm is 0.000000 arcmin
+2022-07-06 18:20:04,565:INFO: 1.2.1
+2022-07-06 18:20:04,565:INFO: 1.2.1
+2022-07-06 18:20:04,565:INFO: 1.2.1
+2022-07-06 18:20:04,565:INFO: 1.2.1
+2022-07-06 18:20:04,566:INFO: George Halal
+2022-07-06 18:20:04,566:INFO: George Halal
+2022-07-06 18:20:04,566:INFO: George Halal
+2022-07-06 18:20:04,566:INFO: George Halal
+2022-07-06 18:20:04,965:INFO: halalgeorge@gmail.com
+2022-07-06 18:20:04,965:INFO: halalgeorge@gmail.com
+2022-07-06 18:20:04,965:INFO: halalgeorge@gmail.com
+2022-07-06 18:20:04,965:INFO: halalgeorge@gmail.com

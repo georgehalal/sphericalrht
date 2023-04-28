@@ -31,5 +31,5 @@ from .utils import set_logger
 
 __author__ = "George Halal"
 __email__ = "halalgeorge@gmail.com"
-__version__ = "1.2.1"
+__version__ = "2.0.0"
 __all__ = ["StokesQU", "CubeAndStokes", "set_logger"]

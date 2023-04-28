@@ -21,7 +21,7 @@ copyright = '2021, George Halal'
 author = 'George Halal'
 
 # The short X.Y version
-version = "1.2.2"
+version = "2.0.0"
 # The full version, including alpha/beta/rc tags
 release = version
 

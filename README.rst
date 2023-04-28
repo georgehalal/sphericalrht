@@ -107,6 +107,11 @@ Optional
   have found empirically that ``norients`` = 25 is sufficient for most
   applications.
 
+``mask``: Union[str, np.ndarray]
+  either a path to the map or an array of the map pixels. This defines
+  the mask for maps that are not defined over the entire sky. The map
+  ordering is assumed to be RING.
+
 ``weighting``: Union[str, np.ndarray]
   either a path to the map or an array of the map pixels. This is used as the
   weight for the output Stokes Q/U maps. The map ordering is assumed to be RING.
