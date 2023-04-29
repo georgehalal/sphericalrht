@@ -31,6 +31,7 @@ jobs:
     - name: Coveralls
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        COVERALLS_REPO_TOKEN: HesVhAvS3yGbJzWRh4P3KXp2pdrDkyEOp
       run: coveralls --service=github
     - name: Test with tox
       run: tox
