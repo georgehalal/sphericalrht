@@ -22,6 +22,9 @@
    <a href="https://badge.fury.io/py/sphericalrht">
    <img alt="PyPI - Python Version" src="https://img.shields.io/pypi/pyversions/sphericalrht">
    </a>
+   <a href="https://zenodo.org/badge/latestdoi/426074877">
+   <img src="https://zenodo.org/badge/426074877.svg" alt="DOI">
+   </a>
    </div>
    <br/>
 
