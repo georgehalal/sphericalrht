@@ -1,0 +1,22 @@
+cff-version: 2.0.1
+message: "If you make use of this code in your research, please cite it as below."
+authors:
+- family-names: "Halal"
+  given-names: "George"
+  orcid: "https://orcid.org/0000-0003-2221-3018"
+- family-names: "Clark"
+  given-names: "Susan E."
+  orcid: "https://orcid.org/0000-0002-7633-3376"
+- family-names: "Cukierman"
+  given-names: "Ari"
+  orcid: "https://orcid.org/0000-0002-7471-719X"
+- family-names: "Beck"
+  given-names: "Dominic"
+  orcid: "https://orcid.org/0000-0003-0848-2756"
+- family-names: "Kuo"
+  given-names: "Chao-Lin"
+title: "Spherical RHT"
+version: 2.0.1
+doi: 10.5281/zenodo.8025777
+date-released: 2023-06-11
+url: "https://github.com/georgehalal/sphericalrht"
