@@ -222,32 +222,33 @@ References & Attribution
 ========================
 
 If you make use of this code in your research, please consider the
-following acknowledgements:
+following acknowledgments:
 
-.. code-block:: 
-   @software{Halal_Spherical_RHT_2023,
-             author = {Halal, George and Clark, Susan E. and Cukierman, Ari and Beck, Dominic and Kuo, Chao-Lin},
-             doi = {10.5281/zenodo.8025777},
-             month = jun,
-             title = {{Spherical RHT}},
-             url = {https://github.com/georgehalal/sphericalrht},
-             version = {2.0.1},
-             year = {2023}
-   }
+::
 
-   @ARTICLE{Halal:2023,
-          author = {{Halal}, George and {Clark}, Susan E. and {Cukierman}, Ari and {Beck}, Dominic and {Kuo}, Chao-Lin},
+  @software{Halal_Spherical_RHT_2023,
+            author = {Halal, George and Clark, Susan E. and Cukierman, Ari and Beck, Dominic and Kuo, Chao-Lin},
+            doi = {10.5281/zenodo.8025777},
+            month = jun,
+            title = {{Spherical RHT}},
+            url = {https://github.com/georgehalal/sphericalrht},
+            version = {2.0.1},
+            year = {2023}
+  }
+
+  @ARTICLE{Halal:2023,
+           author = {{Halal}, George and {Clark}, Susan E. and {Cukierman}, Ari and {Beck}, Dominic and {Kuo}, Chao-Lin},
            title = "{Filamentary Dust Polarization and the Morphology of Neutral Hydrogen Structures}",
-         journal = {arXiv e-prints},
-        keywords = {Astrophysics - Astrophysics of Galaxies, Astrophysics - Cosmology and Nongalactic Astrophysics},
-            year = 2023,
+           journal = {arXiv e-prints},
+           keywords = {Astrophysics - Astrophysics of Galaxies, Astrophysics - Cosmology and Nongalactic Astrophysics},
+           year = 2023,
            month = jun,
-             eid = {arXiv:2306.10107},
+           eid = {arXiv:2306.10107},
            pages = {arXiv:2306.10107},
-             doi = {10.48550/arXiv.2306.10107},
-   archivePrefix = {arXiv},
-          eprint = {2306.10107},
-    primaryClass = {astro-ph.GA},
-          adsurl = {https://ui.adsabs.harvard.edu/abs/2023arXiv230610107H},
-         adsnote = {Provided by the SAO/NASA Astrophysics Data System}
-   }
+           doi = {10.48550/arXiv.2306.10107},
+           archivePrefix = {arXiv},
+           eprint = {2306.10107},
+           primaryClass = {astro-ph.GA},
+           adsurl = {https://ui.adsabs.harvard.edu/abs/2023arXiv230610107H},
+           adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+  }
