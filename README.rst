@@ -224,7 +224,7 @@ References & Attribution
 If you make use of this code in your research, please consider the
 following acknowledgements:
 
-.. 
+.. code-block:: 
    @software{Halal_Spherical_RHT_2023,
              author = {Halal, George and Clark, Susan E. and Cukierman, Ari and Beck, Dominic and Kuo, Chao-Lin},
              doi = {10.5281/zenodo.8025777},
